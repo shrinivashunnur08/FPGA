@@ -1,0 +1,63 @@
+`timescale 1ns / 1ps
+
+////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer:
+//
+// Create Date:   23:00:47 04/07/2023
+// Design Name:   Bank_Vault_Lock_Controller
+// Module Name:   C:/Users/app/Bank_Vault_Lock_Controller/Bank_Vault_Lock_Controller_tb.v
+// Project Name:  Bank_Vault_Lock_Controller
+// Target Device:  
+// Tool versions:  
+// Description: 
+//
+// Verilog Test Fixture created by ISE for module: Bank_Vault_Lock_Controller
+//
+// Dependencies:
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+////////////////////////////////////////////////////////////////////////////////
+
+module Bank_Vault_Lock_Controller_tb;
+
+	// Inputs
+	reg clk;
+	reg P;
+	reg [1:0] VP;
+	reg Open;
+	//reg slow_clock;
+	// Outputs
+	wire [7:0] LED;
+	wire Unlock;
+
+	// Instantiate the Unit Under Test (UUT)
+	Bank_Vault_Lock_Controller uut (
+		.clk(clk), 
+		.P(P), 
+		.VP(VP), 
+		.Open(Open), 
+		.LED(LED), 
+		.Unlock(Unlock)
+	);
+
+	initial begin
+		// Initialize Inputs
+		clk = 0;
+		P = 1;
+		VP = 2;
+		Open = 0;
+	
+		// Wait 100 ns for global reset to finish
+		#100;
+     clk = 1;
+		
+		Open = 1;
+		
+	end
+    always #100000000 clk = ~clk;
+endmodule
+
